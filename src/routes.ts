@@ -8,6 +8,8 @@ import { ListUsersController } from "./controllers/ListUsersController";
 import { ListBancosController } from "./controllers/ListBancosController";
 
 import { CreateEmpresaController } from "./controllers/CreateEmpresaController";
+import { DeleteBancoController } from "./controllers/DeleteBancoController";
+import { UpdateBancoController } from "./controllers/UpdateBancoController";
 
 
 const router = Router();
@@ -21,6 +23,7 @@ const listUsersController = new ListUsersController();
 const listBancosController = new ListBancosController();
 
 const createEmpresaController = new CreateEmpresaController();
+const updateBancoController = new UpdateBancoController();
 
 
 //router.post("/bancos", CreateBancoController.handle)
@@ -46,5 +49,15 @@ router.get("/bancos", ensureAuthenticated, listBancosController.handle);
 */
 
 router.post("/empresas", createEmpresaController.handle);
+
+
+
+router.delete("/bancos/:id", new DeleteBancoController().handle);
+
+
+
+//router.put ("/bancos/:id", new UpdateBancoController().handle);
+router.put("/bancos/:id", ensureAuthenticated, updateBancoController.handle);
+
 
 export { router };
