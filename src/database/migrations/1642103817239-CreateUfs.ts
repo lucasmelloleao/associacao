@@ -1,11 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { Column, MigrationInterface, QueryRunner, Table, TableIndex } from "typeorm";
 
-export class CreateBancos1642102271707 implements MigrationInterface {
+export class CreateUfs1642103817239 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "bancos",
+                name: "ufs",
                 columns: [
                     {
                         name: "id",
@@ -13,24 +13,17 @@ export class CreateBancos1642102271707 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "empresa",
+                        name: "pais",
                         type: "int",
                     },
                     {
-                        name: "banco",
+                        name: "uf",
                         type: "int",
                     },
                     {
                         name: "nome",
                         type: "varchar",
                     },
-
-                    {
-                        name: "febraban",
-                        type: "int",
-                    },
-
-
                     {
                         name: "created_at",
                         type: "timestamp",
@@ -42,20 +35,31 @@ export class CreateBancos1642102271707 implements MigrationInterface {
                         default: "now()",
                     },
                 ],
+
                 indices: [
                     {
-                        name: "Ibanco",
-                        columnNames: ["empresa", "banco"],
+                        name: "IUfs",
+                        columnNames: ["pais", "uf"],
+
+
+                    },
+
+                ],
+
+                foreignKeys: [
+                    {
+                        name: "FKPaisesUfs",
+                        referencedTableName: "paises",
+                        referencedColumnNames: ["pais"],
+                        columnNames: ["pais"],
 
                     }
                 ],
-
             })
-
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("bancos");
+        await queryRunner.dropTable("ufs");
     }
 }

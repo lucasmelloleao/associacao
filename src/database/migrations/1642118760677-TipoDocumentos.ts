@@ -1,35 +1,31 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateBancos1642102271707 implements MigrationInterface {
+export class TipoDocumentos1642118760677 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "bancos",
+                name: "tipoDocumentos",
                 columns: [
                     {
+
                         name: "id",
                         type: "varchar",
                         isPrimary: true,
                     },
                     {
-                        name: "empresa",
-                        type: "int",
-                    },
-                    {
-                        name: "banco",
+                        name: "tipodocto",
                         type: "int",
                     },
                     {
                         name: "nome",
                         type: "varchar",
                     },
-
                     {
-                        name: "febraban",
+                        name: "pais",
                         type: "int",
-                    },
 
+                    },
 
                     {
                         name: "created_at",
@@ -42,20 +38,24 @@ export class CreateBancos1642102271707 implements MigrationInterface {
                         default: "now()",
                     },
                 ],
-                indices: [
+
+
+                foreignKeys: [
                     {
-                        name: "Ibanco",
-                        columnNames: ["empresa", "banco"],
+                        name: "FKPaisesTipoDocumentos",
+                        referencedTableName: "paises",
+                        referencedColumnNames: ["pais"],
+                        columnNames: ["pais"]
 
-                    }
+                    },
+
                 ],
-
             })
-
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("bancos");
+        await queryRunner.dropTable("tipoDocumentos");
     }
 }
+

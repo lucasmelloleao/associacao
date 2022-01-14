@@ -1,33 +1,25 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateBancos1642102271707 implements MigrationInterface {
+export class CreatePaises1642103808330 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "bancos",
+                name: "paises",
                 columns: [
                     {
                         name: "id",
                         type: "varchar",
                         isPrimary: true,
                     },
+
                     {
-                        name: "empresa",
-                        type: "int",
-                    },
-                    {
-                        name: "banco",
+                        name: "pais",
                         type: "int",
                     },
                     {
                         name: "nome",
                         type: "varchar",
-                    },
-
-                    {
-                        name: "febraban",
-                        type: "int",
                     },
 
 
@@ -44,18 +36,17 @@ export class CreateBancos1642102271707 implements MigrationInterface {
                 ],
                 indices: [
                     {
-                        name: "Ibanco",
-                        columnNames: ["empresa", "banco"],
+                        name: "IPaises",
+                        columnNames: ["pais"],
 
                     }
                 ],
 
             })
-
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("bancos");
+        await queryRunner.dropTable("paises");
     }
 }

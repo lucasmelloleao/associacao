@@ -1,11 +1,13 @@
+
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateBancos1642102271707 implements MigrationInterface {
+export class CreateMunicipios1642103831723 implements MigrationInterface {
+
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "bancos",
+                name: "municipios",
                 columns: [
                     {
                         name: "id",
@@ -13,24 +15,22 @@ export class CreateBancos1642102271707 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "empresa",
+                        name: "municipio",
                         type: "int",
                     },
                     {
-                        name: "banco",
+                        name: "pais",
                         type: "int",
                     },
+                    {
+                        name: "uf",
+                        type: "int",
+                    },
+
                     {
                         name: "nome",
                         type: "varchar",
                     },
-
-                    {
-                        name: "febraban",
-                        type: "int",
-                    },
-
-
                     {
                         name: "created_at",
                         type: "timestamp",
@@ -42,20 +42,35 @@ export class CreateBancos1642102271707 implements MigrationInterface {
                         default: "now()",
                     },
                 ],
+
                 indices: [
                     {
-                        name: "Ibanco",
-                        columnNames: ["empresa", "banco"],
+                        name: "IMunicipios",
+                        columnNames: ["municipio"],
+
+
+                    },
+
+                ],
+
+
+                foreignKeys: [
+                    {
+                        name: "FKUfsMunicipios",
+                        referencedTableName: "ufs",
+                        referencedColumnNames: ["pais", "uf"],
+                        columnNames: ["pais", "uf"],
 
                     }
                 ],
-
             })
-
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("bancos");
+        await queryRunner.dropTable("municipios");
     }
 }
+
+
+

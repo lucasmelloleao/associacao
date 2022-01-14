@@ -19,10 +19,12 @@ class User {
   @Column()
   email: string;
 
+
+
   @Column()
   admin: boolean;
 
-  @Exclude()
+
   @Column()
   password: string;
 

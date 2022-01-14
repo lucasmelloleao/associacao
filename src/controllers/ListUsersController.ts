@@ -9,6 +9,7 @@ class ListUsersController {
 
     return response.json(users);
   }
+
 }
 
 export { ListUsersController };
