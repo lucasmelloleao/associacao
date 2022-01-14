@@ -13,11 +13,11 @@ export class CreateBancos1642102271707 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "empresa",
+                        name: "empresaid",
                         type: "int",
                     },
                     {
-                        name: "banco",
+                        name: "bancoid",
                         type: "int",
                     },
                     {
@@ -45,7 +45,22 @@ export class CreateBancos1642102271707 implements MigrationInterface {
                 indices: [
                     {
                         name: "Ibanco",
-                        columnNames: ["empresa", "banco"],
+                        columnNames: ["empresaid", "bancoid"],
+
+                    },
+                    {
+                        name: "Ibanco1",
+                        columnNames: ["empresaid"],
+
+                    }
+
+                ],
+                foreignKeys: [
+                    {
+                        name: "FKEmpresaBanco",
+                        referencedTableName: "empresas",
+                        referencedColumnNames: ["empresaid"],
+                        columnNames: ["empresaid"],
 
                     }
                 ],

@@ -4,46 +4,28 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
-    JoinColumn,
-    ManyToOne,
-    Index,
-    OneToMany,
-    PrimaryGeneratedColumn,
+    JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
-import { Empresa } from "./Empresa";
+import { Banco } from "./Banco";
 
-
-@Entity("bancos")
-class Banco {
-
-
+@Entity("empresas")
+class Empresa {
     @PrimaryGeneratedColumn()
     readonly id: string;
-
    
- 
+   
     @Column()
     empresaid: number;
- 
-
+  
+    @OneToMany(type => Banco, banco => banco.empresaid)
+    banco: Banco[];
     
-    @ManyToOne(type=>Empresa)
-   @JoinColumn({ name: 'empresaid', referencedColumnName:'empresaid' })
-    empresa: Empresa;
-
-
-
-    @Column()
-    bancoid: number;
+   
 
     @Column()
     nome: string;
-
-    @Column()
-    febraban: string;
-
 
     @CreateDateColumn()
     created_at: Date;
@@ -58,4 +40,4 @@ class Banco {
     }
 }
 
-export { Banco };
+export { Empresa };

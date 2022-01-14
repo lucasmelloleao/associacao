@@ -14,7 +14,7 @@ export class CreatePaises1642103808330 implements MigrationInterface {
                     },
 
                     {
-                        name: "pais",
+                        name: "paisid",
                         type: "int",
                     },
                     {
@@ -37,7 +37,7 @@ export class CreatePaises1642103808330 implements MigrationInterface {
                 indices: [
                     {
                         name: "IPaises",
-                        columnNames: ["pais"],
+                        columnNames: ["paisid"],
 
                     }
                 ],

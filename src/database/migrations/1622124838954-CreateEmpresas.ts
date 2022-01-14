@@ -1,14 +1,14 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateAgencias1642115858493 implements MigrationInterface {
+export class CreateEmpresas1622124838954 implements MigrationInterface {
+
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "agencias",
+                name: "empresas",
                 columns: [
                     {
-
                         name: "id",
                         type: "varchar",
                         isPrimary: true,
@@ -17,19 +17,12 @@ export class CreateAgencias1642115858493 implements MigrationInterface {
                         name: "empresaid",
                         type: "int",
                     },
-                    {
-                        name: "bancoid",
-                        type: "int",
-                    },
-                    {
-                        name: "agenciaid",
-                        type: "int",
 
-                    },
                     {
-                        name: "municipioid",
-                        type: "int",
+                        name: "nome",
+                        type: "varchar",
                     },
+
                     {
                         name: "created_at",
                         type: "timestamp",
@@ -41,30 +34,19 @@ export class CreateAgencias1642115858493 implements MigrationInterface {
                         default: "now()",
                     },
                 ],
-
-
-                foreignKeys: [
+                indices: [
                     {
-                        name: "FKMunicipiosAgencias",
-                        referencedTableName: "municipios",
-                        referencedColumnNames: ["municipioid"],
-                        columnNames: ["municipioid"]
-
-                    },
-                    {
-                        name: "FKBancoAgencia",
-                        referencedTableName: "bancos",
-                        referencedColumnNames: ["empresaid", "bancoid"],
-                        columnNames: ["empresaid", "bancoid"],
-
+                        name: "IEmpresa",
+                        columnNames: ["empresaid"],
                     }
                 ],
+
             })
+
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("agencias");
+        await queryRunner.dropTable("empresa");
     }
 }
-

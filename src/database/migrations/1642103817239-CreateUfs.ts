@@ -13,11 +13,11 @@ export class CreateUfs1642103817239 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "pais",
+                        name: "paisid",
                         type: "int",
                     },
                     {
-                        name: "uf",
+                        name: "ufid",
                         type: "int",
                     },
                     {
@@ -39,7 +39,7 @@ export class CreateUfs1642103817239 implements MigrationInterface {
                 indices: [
                     {
                         name: "IUfs",
-                        columnNames: ["pais", "uf"],
+                        columnNames: ["paisid", "ufid"],
 
 
                     },
@@ -50,8 +50,8 @@ export class CreateUfs1642103817239 implements MigrationInterface {
                     {
                         name: "FKPaisesUfs",
                         referencedTableName: "paises",
-                        referencedColumnNames: ["pais"],
-                        columnNames: ["pais"],
+                        referencedColumnNames: ["paisid"],
+                        columnNames: ["paisid"],
 
                     }
                 ],

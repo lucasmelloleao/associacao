@@ -2,14 +2,14 @@ import { getCustomRepository } from "typeorm";
 import { BancosRepositories } from "../repositories/BancosRepositories";
 
 interface IBancoRequest {
-  empresa: number;
-  banco: number;
+  empresaid: number;
+  bancoid: number;
   nome: string;
   febraban: string;
 }
 
 class CreateBancoService {
-  async execute({ empresa, banco, nome, febraban }: IBancoRequest) {
+  async execute({ empresaid, bancoid, nome, febraban }: IBancoRequest) {
     const bancosRepository = getCustomRepository(BancosRepositories);
 
     if (!nome) {
@@ -17,7 +17,7 @@ class CreateBancoService {
     }
 
     const bancoAlreadyExists = await bancosRepository.findOne({
-      empresa, banco,
+      empresaid , bancoid,
     });
 
     if (bancoAlreadyExists) {
@@ -26,8 +26,8 @@ class CreateBancoService {
 
 
     const bancos = bancosRepository.create({
-      empresa,
-      banco,
+      empresaid,
+      bancoid,
       nome,
       febraban,
     });

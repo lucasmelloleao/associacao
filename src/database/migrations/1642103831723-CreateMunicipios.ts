@@ -15,15 +15,15 @@ export class CreateMunicipios1642103831723 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "municipio",
+                        name: "municipioid",
                         type: "int",
                     },
                     {
-                        name: "pais",
+                        name: "paisid",
                         type: "int",
                     },
                     {
-                        name: "uf",
+                        name: "ufid",
                         type: "int",
                     },
 
@@ -46,7 +46,7 @@ export class CreateMunicipios1642103831723 implements MigrationInterface {
                 indices: [
                     {
                         name: "IMunicipios",
-                        columnNames: ["municipio"],
+                        columnNames: ["municipioid"],
 
 
                     },
@@ -58,8 +58,8 @@ export class CreateMunicipios1642103831723 implements MigrationInterface {
                     {
                         name: "FKUfsMunicipios",
                         referencedTableName: "ufs",
-                        referencedColumnNames: ["pais", "uf"],
-                        columnNames: ["pais", "uf"],
+                        referencedColumnNames: ["paisid", "ufid"],
+                        columnNames: ["paisid", "ufid"],
 
                     }
                 ],

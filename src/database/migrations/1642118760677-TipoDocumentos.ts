@@ -14,7 +14,7 @@ export class TipoDocumentos1642118760677 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "tipodocto",
+                        name: "tipodoctoid",
                         type: "int",
                     },
                     {
@@ -22,7 +22,7 @@ export class TipoDocumentos1642118760677 implements MigrationInterface {
                         type: "varchar",
                     },
                     {
-                        name: "pais",
+                        name: "paisid",
                         type: "int",
 
                     },
@@ -44,8 +44,8 @@ export class TipoDocumentos1642118760677 implements MigrationInterface {
                     {
                         name: "FKPaisesTipoDocumentos",
                         referencedTableName: "paises",
-                        referencedColumnNames: ["pais"],
-                        columnNames: ["pais"]
+                        referencedColumnNames: ["paisid"],
+                        columnNames: ["paisid"]
 
                     },
 
