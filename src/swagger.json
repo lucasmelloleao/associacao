@@ -1,0 +1,190 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Swagger Teste",
+    "description": "Descrição Swagger",
+    "version": "1.0.0",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "lucas@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Development server"
+    }
+  ],
+
+  "paths": {
+    "/login": {
+      "post": {
+        "description": "Returns pets based on ID",
+        "summary": "Find pets by ID",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "examples": {
+                "login": {
+                  "value": {
+                    "email": "lucas@gmail.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Nao autorizado"
+          },
+          "400": {
+            "description": "Produto ja existe"
+          },
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Login"
+                },
+                "examples": {
+                  "login": {
+                    "value": {
+                      "email": "lucas@gmail.com",
+                      "password": "123456"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bancos": {
+      "get": {
+        "description": "Buscar banco por nome",
+        "sumary": "sumario",
+        "tags": ["Banco"],
+        "security": [{ "bearerAuth": [] }],
+
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bancos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Adicionar Banco",
+        "sumary": "sumario",
+        "tags": ["Banco"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "empresaid",
+            "in": "query"
+          },
+
+          {
+            "name": "bancoid",
+            "in": "query"
+          },
+          {
+            "name": "nome",
+            "in": "query"
+          },
+          {
+            "name": "febraban",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bancos"
+                  },
+                  "examples": {
+                    "login": {
+                      "value": {
+                        "email": "lucas@gmail.com",
+                        "password": "123456"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Bancos": {
+        "type": "object",
+        "properties": {
+          "empresaid": {
+            "type": "number"
+          },
+          "bancoid": {
+            "type": "number"
+          },
+
+          "nome": {
+            "type": "string"
+          },
+          "febraban": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

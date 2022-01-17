@@ -9,14 +9,21 @@ interface IAuthenticateRequest {
   password: string;
 }
 
+
+
 class AuthenticateUserService {
   async execute({ email, password }: IAuthenticateRequest) {
     const usersRepositories = getCustomRepository(UsersRepositories);
+
+
+
 
     // Verificar se email existe
     const user = await usersRepositories.findOne({
       email,
     });
+
+    console.log ("Autenticando usuario");        
 
     if (!user) {
       throw new Error("Email/Password incorrect");

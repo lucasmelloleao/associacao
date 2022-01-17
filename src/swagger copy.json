@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Api de Associacao",
+    "description": "Descricao  da API. Documentacao",
+    "contact": {
+      "email": "lucasmelloleao@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "http://localhost:3000/v1", "description": "Api de teste" }
+  ],
+  "path": {
+    "/login": {
+      "post": {
+        "sumary": "Login na aplicacao",
+        "description": "essa rota ira",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/logar"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "logar": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ export function ensureAuthenticated(
 ) {
   // Receber o token
   const authToken = request.headers.authorization;
-
+  
   // Validar se token está preenchido
   if (!authToken) {
     return response.status(401).end();
@@ -30,6 +30,7 @@ export function ensureAuthenticated(
     // Recuperar informações do usuário
     request.user_id = sub;
 
+    
     return next();
   } catch (err) {
     return response.status(401).end();

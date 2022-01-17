@@ -3,10 +3,15 @@ import express, { Request, Response, NextFunction } from "express";
 import "express-async-errors";
 import cors from "cors";
 import { router } from "./routes";
+import swaggerUi from "swagger-ui-express";
 
+import swaggerDocs from "./swagger.json"
 import "./database";
 
 const app = express();
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
 app.use(cors());
 
 app.use(express.json());

@@ -11,15 +11,15 @@ export async function ensureAdmin(
 
   const usersRepositories = getCustomRepository(UsersRepositories);
 
-  const { admin } = await usersRepositories.findOne(user_id);
+  const { admin, email } = await usersRepositories.findOne(user_id);
 
-  // Verificar se usuario admin
+ 
 
   if (admin) {
     return next();
   }
 
   return response.status(401).json({
-    error: "Unauthorized",
+    error: "Unauthorized. Somente Adm pode acessar",
   });
 }

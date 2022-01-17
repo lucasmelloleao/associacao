@@ -8,6 +8,8 @@ import { ListUsersController } from "./controllers/ListUsersController";
 import { ListBancosController } from "./controllers/ListBancosController";
 
 import { CreateEmpresaController } from "./controllers/CreateEmpresaController";
+
+import {ListEmpresasController} from "./controllers/ListEmpresasController"
 import { DeleteBancoController } from "./controllers/DeleteBancoController";
 import { UpdateBancoController } from "./controllers/UpdateBancoController";
 
@@ -23,7 +25,10 @@ const listUsersController = new ListUsersController();
 const listBancosController = new ListBancosController();
 
 const createEmpresaController = new CreateEmpresaController();
+const listEmpresaController = new ListEmpresasController();
 const updateBancoController = new UpdateBancoController();
+
+const deleteBancoController = new DeleteBancoController();
 
 
 //router.post("/bancos", CreateBancoController.handle)
@@ -38,26 +43,31 @@ router.post(
 );
 
 */
-router.post("/bancos", createBancoController.handle);
-router.post("/users", createUserController.handle);
-router.post("/login", authenticateUserController.handle);
-
-router.get("/users", ensureAuthenticated, listUsersController.handle);
-router.get("/bancos", ensureAuthenticated, listBancosController.handle);
-
-/*router.get("/empresas", ensureAuthenticated, listEmpresaController.handle);
-*/
-
-router.post("/empresas", createEmpresaController.handle);
 
 
 
-router.delete("/bancos/:id", new DeleteBancoController().handle);
+router.get("/bancos", ensureAuthenticated,ensureAdmin, listBancosController.handle);
+router.post("/bancos", ensureAuthenticated,ensureAdmin,createBancoController.handle);
+router.put("/bancos/:id", ensureAuthenticated,ensureAdmin,  updateBancoController.handle);
+router.delete("/bancos/:id", ensureAuthenticated,ensureAdmin,  deleteBancoController.handle);
 
 
 
-//router.put ("/bancos/:id", new UpdateBancoController().handle);
-router.put("/bancos/:id", ensureAuthenticated, updateBancoController.handle);
+router.get("/empresas",  ensureAuthenticated, ensureAdmin,listEmpresaController.handle);
+router.post("/empresas", ensureAdmin, ensureAuthenticated, createEmpresaController.handle);
+
+
+
+
+
+router.post("/login",  authenticateUserController.handle);
+
+ 
+router.post("/users", ensureAuthenticated,  ensureAdmin, createUserController.handle);
+router.get("/users",  ensureAuthenticated,  listUsersController.handle);
+
+
+
 
 
 export { router };
