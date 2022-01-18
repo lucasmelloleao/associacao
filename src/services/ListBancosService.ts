@@ -12,7 +12,7 @@ class ListBancosService {
       
     });
 
-    
+   
 
     return classToPlain(bancos);
   }

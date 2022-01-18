@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm";
+import { Empresa } from "../entities/Empresa";
 import { BancosRepositories } from "../repositories/BancosRepositories";
 
 interface IBancoRequest {
@@ -12,7 +13,8 @@ class CreateBancoService {
   async execute({ empresaid, bancoid, nome, febraban }: IBancoRequest) {
     const bancosRepository = getCustomRepository(BancosRepositories);
 
-    if (!nome) {
+    
+    if (!empresaid) {
       throw new Error("Nome do banco não informado");
     }
 

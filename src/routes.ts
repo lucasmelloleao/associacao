@@ -12,6 +12,8 @@ import { CreateEmpresaController } from "./controllers/CreateEmpresaController";
 import {ListEmpresasController} from "./controllers/ListEmpresasController"
 import { DeleteBancoController } from "./controllers/DeleteBancoController";
 import { UpdateBancoController } from "./controllers/UpdateBancoController";
+import { FindBancoController } from "./controllers/ListBancosbyIDController";
+
 
 
 const router = Router();
@@ -23,6 +25,8 @@ const authenticateUserController = new AuthenticateUserController();
 const createBancoController = new CreateBancoController();
 const listUsersController = new ListUsersController();
 const listBancosController = new ListBancosController();
+const findBancosbyIDController = new FindBancoController();
+
 
 const createEmpresaController = new CreateEmpresaController();
 const listEmpresaController = new ListEmpresasController();
@@ -47,15 +51,19 @@ router.post(
 
 
 router.get("/bancos", ensureAuthenticated,ensureAdmin, listBancosController.handle);
-router.post("/bancos", ensureAuthenticated,ensureAdmin,createBancoController.handle);
-router.put("/bancos/:id", ensureAuthenticated,ensureAdmin,  updateBancoController.handle);
-router.delete("/bancos/:id", ensureAuthenticated,ensureAdmin,  deleteBancoController.handle);
+router.post("/bancos", createBancoController.handle);
+
+//router.post("/bancos", ensureAuthenticated,ensureAdmin,createBancoController.handle);
+
+router.get("/bancos/:id", findBancosbyIDController.handle);
+
+router.put("/bancos/:id",   updateBancoController.handle);
+router.delete("/bancos/:id",   deleteBancoController.handle);
 
 
 
 router.get("/empresas",  ensureAuthenticated, ensureAdmin,listEmpresaController.handle);
 router.post("/empresas", ensureAdmin, ensureAuthenticated, createEmpresaController.handle);
-
 
 
 

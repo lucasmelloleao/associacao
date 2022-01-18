@@ -23,7 +23,6 @@ class AuthenticateUserService {
       email,
     });
 
-    console.log ("Autenticando usuario");        
 
     if (!user) {
       throw new Error("Email/Password incorrect");

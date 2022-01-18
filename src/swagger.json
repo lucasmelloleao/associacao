@@ -100,24 +100,52 @@
         "description": "Adicionar Banco",
         "sumary": "sumario",
         "tags": ["Banco"],
-        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Bancos"
+              },
+              "examples": {
+                "Bancos": {
+                  "value": {
+                    "empresaid": 1,
+                    "bancoid": 3,
+                    "nome": "Banco ABC",
+                    "febraban": "1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bancos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/bancos/{id}": {
+      "get": {
+        "description": "Buscar banco por nome",
+        "sumary": "sumario",
+        "tags": ["Banco"],
         "parameters": [
           {
-            "name": "empresaid",
-            "in": "query"
-          },
-
-          {
-            "name": "bancoid",
-            "in": "query"
-          },
-          {
-            "name": "nome",
-            "in": "query"
-          },
-          {
-            "name": "febraban",
-            "in": "query"
+            "name": "id",
+            "in": "path"
           }
         ],
         "responses": {
@@ -129,14 +157,80 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Bancos"
-                  },
-                  "examples": {
-                    "login": {
-                      "value": {
-                        "email": "lucas@gmail.com",
-                        "password": "123456"
-                      }
-                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "delete": {
+        "description": "Buscar banco por nome",
+        "sumary": "sumario",
+        "tags": ["Banco"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bancos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Buscar banco por nome",
+        "sumary": "sumario",
+        "tags": ["Banco"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Bancos"
+              },
+              "examples": {
+                "banco": {
+                  "value": {
+                    "bancoid": "1",
+                    "empresa1": "1",
+                    "nome": "Banco Put_ado",
+                    "febraban": "10"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bancos"
                   }
                 }
               }
