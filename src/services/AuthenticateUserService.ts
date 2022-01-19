@@ -17,11 +17,12 @@ class AuthenticateUserService {
 
 
 
-
     // Verificar se email existe
     const user = await usersRepositories.findOne({
       email,
     });
+
+
 
 
     if (!user) {

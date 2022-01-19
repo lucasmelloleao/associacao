@@ -2,7 +2,7 @@ import "reflect-metadata";
 import express, { Request, Response, NextFunction } from "express";
 import "express-async-errors";
 import cors from "cors";
-import { router } from "./routes";
+import { router } from   "./routes";
 import swaggerUi from "swagger-ui-express";
 
 import swaggerDocs from "./swagger.json"

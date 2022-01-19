@@ -2,7 +2,7 @@
 
 
 import { Request, Response } from "express";
-import { DeleteBancoService } from "../services/DeleteBancoService";
+import { DeleteBancoService } from "@services/DeleteBancoService";
 
 export class DeleteBancoController {
 async handle (request:Request, response:Response) {

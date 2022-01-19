@@ -76,7 +76,6 @@
     "/bancos": {
       "get": {
         "description": "Buscar banco por nome",
-        "sumary": "sumario",
         "tags": ["Banco"],
         "security": [{ "bearerAuth": [] }],
 
@@ -98,7 +97,6 @@
       },
       "post": {
         "description": "Adicionar Banco",
-        "sumary": "sumario",
         "tags": ["Banco"],
         "requestBody": {
           "content": {
@@ -140,7 +138,6 @@
     "/bancos/{id}": {
       "get": {
         "description": "Buscar banco por nome",
-        "sumary": "sumario",
         "tags": ["Banco"],
         "parameters": [
           {
@@ -167,7 +164,6 @@
 
       "delete": {
         "description": "Buscar banco por nome",
-        "sumary": "sumario",
         "tags": ["Banco"],
         "parameters": [
           {
@@ -193,7 +189,6 @@
       },
       "put": {
         "description": "Buscar banco por nome",
-        "sumary": "sumario",
         "tags": ["Banco"],
         "parameters": [
           {

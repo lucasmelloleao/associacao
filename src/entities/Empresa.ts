@@ -8,7 +8,8 @@ import {
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
-import { Banco } from "./Banco";
+import { Banco } from "@entities/Banco"
+
 
 @Entity("empresas")
 class Empresa {

@@ -12,7 +12,7 @@ import {
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
-import { Empresa } from "./Empresa";
+import { Empresa } from "@entities/Empresa";
 
 
 @Entity("bancos")

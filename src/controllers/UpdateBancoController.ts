@@ -1,5 +1,5 @@
 import { Request, response, Response } from "express";
-import { UpdateBancoService } from "../services/UpdateBancoService";
+import { UpdateBancoService } from "@services/UpdateBancoService";
 
 export class UpdateBancoController {
     async handle (request: Request, response:Response) {
